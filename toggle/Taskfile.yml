@@ -1,0 +1,41 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  SCRIPT_DIR: scripts
+
+tasks:
+  build:
+    generates:
+      - "{{.SCRIPT_DIR}}/toggle"
+    sources:
+      - main.go
+    desc: Build, store binary in scripts directory
+    cmds:
+      - go build -o {{.SCRIPT_DIR}}/toggle main.go
+    silent: true
+
+  open:
+    desc: Open the ssh port
+    deps:
+      - build
+    cmds:
+      - cd {{.SCRIPT_DIR}} && ./toggle open
+    silent: true
+
+  close:
+    desc: close the ssh port
+    deps:
+      - build
+    cmds:
+      - cd {{.SCRIPT_DIR}} && ./toggle close
+    silent: true
+
+  list:
+    desc: close the ssh port
+    deps:
+      - build
+    cmds:
+      - cd {{.SCRIPT_DIR}} && ./toggle list
+    silent: true
