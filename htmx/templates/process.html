@@ -1,0 +1,11 @@
+{{ if .Valid }}
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Yes!</h4>
+  <p>Your form was successfully submitted.</p>
+</div>
+{{ else }}
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">No!</h4>
+  <p>There was an error submitting your form.</p>
+</div>
+{{ end }}

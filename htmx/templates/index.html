@@ -54,21 +54,30 @@
 
     <div class="md:container md:mx-auto" id="content">
       <h1 class="text-3xl">Tests</h1>
-
+      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="good-boy">
+                    Who is a good boy?
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="good-boy" name="goodboy"  type="text" placeholder="Your answer">
+            </div>
       <div class="overflow-hidden">
         <button
           id="button-test-4"
-          hx-get="/process"
-          hx-target="#content"
-          hx-swap="outerHTML"
-          hx-indicator="#processing"
+          hx-post="/process"
+          hx-target="#result"
+          hx-swap="innerHTML"
           class="inline-flex items-center h-8 px-4 m-2 text-sm text-blue-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800"
           href=""
         >
           Process
         </button>
       </div>
+      </form>
+
       <div class="md:container md:mx-auto"></div>
+      <h2 class="text-3l" id="result">Results</h2>
+
     </div>
     </p>
   </body>

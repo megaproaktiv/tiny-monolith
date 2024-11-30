@@ -3,10 +3,13 @@ package main
 import (
 	_ "embed"
 	"fmt"
+
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"htmx/log"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,7 +26,8 @@ func main() {
 	r.LoadHTMLGlob("templates/*")
 	r.GET("/", Index)
 	r.Static("/css", "./css")
-	r.GET("/process", Process)
+	r.Static("/include", "./include")
+	r.POST("/process", Process)
 	r.Run() // listen and serve on 0.0.0.0:8080
 
 }
@@ -51,6 +55,14 @@ func Process(c *gin.Context) {
 
 func Index(c *gin.Context) {
 	validation := Status{Valid: true}
+	goodBoy := c.PostForm("goodboy")
+	log.Logger.Info("Process", "goodboy", goodBoy)
+	if goodBoy == "me" {
+		validation.Valid = true
+	}
+	if goodBoy == "donald" {
+		validation.Valid = false
+	}
 	c.HTML(http.StatusOK, "index.html", validation)
 	c.Next()
 }
