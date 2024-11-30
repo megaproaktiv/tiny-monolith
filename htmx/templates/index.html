@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script
+      src="include/htmx.min.js"
+      integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq"
+      crossorigin="anonymous"
+    ></script>
+    <link href="css/output.css" rel="stylesheet" />
+    <link href="css/special.css" rel="stylesheet" />
+    <title>HTMX Demo</title>
+  </head>
+  <body>
+    <div class="md:container md:mx-auto">
+      <div>
+        <p class="flex space-x-5 items-center">
+          <div id="menu-column-1" class="flex-1 bg-white items-center">
+            <div class="tooltip">
+              <button
+                id="button-home"
+                hx-get="/"
+                hx-target="body"
+                hx-swap="outerHTML"
+                hx-indicator="#processing"
+                class="inline-flex items-center h-8 px-4 m-2 text-sm text-blue-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800"
+                href=""
+              >
+                <svg
+                  class="h-8 w-8 .text-blue-700"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                  <rect x="10" y="12" width="4" height="4" />
+                </svg>
+              </button>
+              <span class="tooltip-text text-sm">Home</span>
+            </div>
+          </div>
+
+
+<p>
+
+    <div class="md:container md:mx-auto" id="content">
+      <h1 class="text-3xl">Tests</h1>
+
+      <div class="overflow-hidden">
+        <button
+          id="button-test-4"
+          hx-get="/process"
+          hx-target="#content"
+          hx-swap="outerHTML"
+          hx-indicator="#processing"
+          class="inline-flex items-center h-8 px-4 m-2 text-sm text-blue-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800"
+          href=""
+        >
+          Process
+        </button>
+      </div>
+      <div class="md:container md:mx-auto"></div>
+    </div>
+    </p>
+  </body>
+</html>
