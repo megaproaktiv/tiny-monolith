@@ -1,0 +1,19 @@
+# https://taskfile.dev
+
+version: "3"
+
+# The flag "-p 1" test package for package
+# It is needed for flush the logs immidiately to stdout
+vars:
+  APPDIR: ../htmx
+
+tasks:
+  test-1:
+    desc: Run GUI Test
+    cmds:
+      - cd {{.APPDIR}} && task run &
+      - sleep 5
+      - go test . -run TestGuiNavgation -v -p 1 -count 1
+      - pkill -SIGHUP air
+    silent: false
+    ignore_error: true
