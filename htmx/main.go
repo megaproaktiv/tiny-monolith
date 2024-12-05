@@ -3,6 +3,7 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"strings"
 
 	"net/http"
 	"os"
@@ -47,22 +48,22 @@ type Status struct {
 	Valid bool
 }
 
-func Process(c *gin.Context) {
+func Index(c *gin.Context) {
 	validation := Status{Valid: true}
-	c.HTML(http.StatusOK, "process.html", validation)
+	c.HTML(http.StatusOK, "index.html", validation)
 	c.Next()
 }
 
-func Index(c *gin.Context) {
+func Process(c *gin.Context) {
 	validation := Status{Valid: true}
 	goodBoy := c.PostForm("goodboy")
 	log.Logger.Info("Process", "goodboy", goodBoy)
 	if goodBoy == "me" {
 		validation.Valid = true
 	}
-	if goodBoy == "donald" {
+	if strings.ToLower(goodBoy) == "donald" {
 		validation.Valid = false
 	}
-	c.HTML(http.StatusOK, "index.html", validation)
+	c.HTML(http.StatusOK, "process.html", validation)
 	c.Next()
 }

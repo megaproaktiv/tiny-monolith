@@ -1,0 +1,14 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  run:
+    desc: Run the application
+    cmds:
+      - echo http://localhost:8080
+      - go run main.go
+    silent: true
