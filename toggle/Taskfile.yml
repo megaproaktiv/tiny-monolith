@@ -4,6 +4,7 @@ version: "3"
 
 vars:
   SCRIPT_DIR: scripts
+  WEB_SECURITY_GROUP_ID:
 
 tasks:
   build:
@@ -14,7 +15,7 @@ tasks:
     desc: Build, store binary in scripts directory
     cmds:
       - go build -o {{.SCRIPT_DIR}}/toggle main.go
-    silent: true
+    silent: false
 
   open:
     desc: Open the ssh port
@@ -38,4 +39,16 @@ tasks:
       - build
     cmds:
       - cd {{.SCRIPT_DIR}} && ./toggle list
+    silent: true
+
+  create:
+    desc: Create the stack
+    cmds:
+      - aws cloudformation deploy --stack-name toggle --template-file cfn-template.yaml
+    silent: true
+
+  delete:
+    desc: Delete the stack
+    cmds:
+      - aws cloudformation delete-stack --stack-name toggle
     silent: true

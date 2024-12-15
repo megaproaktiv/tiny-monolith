@@ -1,0 +1,24 @@
+Resources:
+  ToggleSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow HTTPS access, demo toggle
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: "Name"
+          Value: "MySecurityGroup"
+
+  ToggleParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Type: String
+      Value: "toggle"
+      Name: "/toggle/security-group-id"
+      Description: "ID of the security group to toggle"
+      Tags:
+        - Key: "Name"
+          Value: "SG ID toggle"
